@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario videobook.es</title>
+  <!-- Font Awesonme -->
+  <script src="https://kit.fontawesome.com/b614cfd257.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <script src="/js/formulari.js"></script>
+
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function(){
+        emailjs.init("service_30nzuo9");
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+</head>
+
+<body>
+  <div style="width: 95%;margin-left: 20px;">
+    <header>
+      <div class="VideoBook.es">
+        <img src="img/logo.png" width="300" height="47" class="logo" alt="VideoBook.es" >
+      </div>
+    </header>
+
+    <form id="form">
+      <fieldset>
+        <legend>Solicita tu videobook a medida</legend>
+
+        <select class="form-select" aria-label="escenas" id="escenas" value=0 name="escenas">
+          
+          <option value="" selected disabled hidden>Cantidad escenas a rodar</option>
+          <option value=300>1 (+300€)</option>
+          <option value=600>2 (+600€)</option>
+          <option value=850>3 (+850€)</option>
+          <option value=1150>4 (+1050)</option>
+          <option value=1350>5 (+1350€)</option>
+          <option value=1550>6 (+1550€)</option>
+        </select>
+        <br>
+        <select class="form-select" aria-label="montaje" id="montaje" value=0 name="montaje">
+          <option value="" selected disabled hidden>¿Quieres la escena montada/editada?</option>
+          <option value=100>Si (+100€ por escena)</option>
+          <option value=0>No</option>
+
+        </select>
+        <br>
+        <select class="form-select" aria-label="originales" id="originales" value=0 name="originales">
+          <option value="" selected disabled hidden>Quieres los origianles de cámara</option>
+          <option value=100>Si (+100€)</option>
+          <option value=0>No</option>
+        </select>
+        <br>
+        <select class="form-select" aria-label="videobook" id="videobook" value=0 name="videobook">
+          <option value="" selected disabled hidden>Quieres montaje de videobook</option>
+          <option value=150>Si (+150€)</option>
+          <option value=0>No</option>
+        </select>
+        <br>
+        <select class="form-select" aria-label="lugar" id="lugar" value=0 name="lugar">
+          <option value="" selected disabled hidden>Lugar de rodaje</option>
+          <option value=20>Barcelona Ciudad (+25€)</option>
+          <option value=5>Baix Llobregat (+5)</option>
+          <option value=290>Madrid Ciudad (+290€)</option>
+          <option value=150>Tarragona Ciudad (+150€)</option>
+          <option value=150>Lleida Ciudad (+150€)</option>
+          <option value=1>Otros</option>
+        </select>
+        <br>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label" >Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">Completa tu e-mail para poder contactar y detallar todos los aspectos
+            del rodaje.</div>
+        </div>
+        <br>
+        
+        <div class="input-group">
+          
+          <textarea class="form-control" aria-label="With textarea" placeholder="Comentarios" name="comentarios"></textarea>
+        </div>
+        <br>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+          <label class="form-check-label" for="invalidCheck">
+            Acepto los términos y condiciones
+          </label>
+          <div class="invalid-feedback">
+            Debes acpetar los términos y condiciones.
+          </div>
+        </div>
+        <br>
+        <input type="hidden" name="suma" id="suma" value="">
+
+      </div>
+      <hr>
+      <input type="submit" id="button" class="btn btn-success btn-block" value="Enviar Solicitud" style="width: 95%;margin-left: 20px;">
+     </fieldset>
+  </form>
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('pnnxocMcwDEbR4-uy')
+</script>
+
+
+</body>
+
+
+
+
+<script>
+  const btn = document.getElementById('button');
+
+document.getElementById('form')
+    .addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        btn.value = 'Enviando...';
+        calcular();
+              
+
+        const serviceID = 'service_30nzuo9';
+        const templateID = 'template_7p7twzh';
+
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                btn.value = 'Enviar Solicitud';
+                //alert('Enviado!');
+            }, (err) => {
+                btn.value = 'Enviar Solicitud';
+                alert(JSON.stringify(err));
+            });
+    });
+</script>
+
+</html>
